@@ -33,17 +33,17 @@ node_exporter_bin_link:
 node_exporter_defaults:
   file.managed:
     - name: /etc/default/node_exporter
-    - source: salt://prometheus/files/default-node_exporter.jinja
+    - source: salt://exporters/files/default-node_exporter.jinja
     - template: jinja
 
 node_exporter_service_unit:
   file.managed:
 {%- if grains.get('init') == 'systemd' %}
     - name: /etc/systemd/system/node_exporter.service
-    - source: salt://prometheus/files/node_exporter.systemd.jinja
+    - source: salt://exporters/files/node_exporter.systemd.jinja
 {%- elif grains.get('init') == 'upstart' %}
     - name: /etc/init/node_exporter.conf
-    - source: salt://prometheus/files/node_exporter.upstart.jinja
+    - source: salt://exporters/files/node_exporter.upstart.jinja
 {%- endif %}
     - require_in:
       - file: node_exporter_service

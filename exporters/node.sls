@@ -1,4 +1,4 @@
-{% from "prometheus/map.jinja" import exporters with context %}
+{% from "exporters/map.jinja" import exporters with context %}
 
 
 node_exporter_group:
